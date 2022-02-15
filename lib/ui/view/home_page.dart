@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:woltapp/data/api/wolt_api_client.dart';
+import 'package:woltapp/data/models/cordinate.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    WoltApiClient()
+        .fetchVenues(Cordinate(latitude: 60.170187, longitude: 24.930599));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
