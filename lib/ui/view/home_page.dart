@@ -1,62 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:woltapp/data/api/wolt_api_client.dart';
-import 'package:woltapp/data/models/cordinate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:woltapp/bloc/venue_bloc.dart';
+import 'package:woltapp/data/models/ticker.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    WoltApiClient()
-        .fetchVenues(Cordinate(latitude: 60.170187, longitude: 24.930599));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            const SliverAppBar(
-              backgroundColor: Colors.white,
-              pinned: true,
-              elevation: 2,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Text(
-                  "Meal Venues",
-                  style: TextStyle(
-                    color: Colors.teal,
+    return BlocProvider<VenueBloc>(
+      create: (BuildContext context) =>
+          VenueBloc(ticker: const Ticker())..add(const VenueEvent.load()),
+      child: Scaffold(
+        body: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              const SliverAppBar(
+                backgroundColor: Colors.white,
+                pinned: true,
+                elevation: 2,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Text(
+                    "Meal Venues",
+                    style: TextStyle(
+                      color: Colors.teal,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ];
-        },
-        body: ListView(
-          children: [
-            Card(
-              child: Row(
-                children: [Text("The Chance")],
-              ),
-            ),
-            Card(
-              child: Row(
-                children: [Text("The Chance")],
-              ),
-            ),
-            Card(
-              child: Row(
-                children: [Text("The Chance")],
-              ),
-            )
-          ],
+            ];
+          },
+          body: BlocConsumer<VenueBloc, VenueState>(
+            listener: (context, state) {
+              if (state is VenueStateLoaded) {}
+            },
+            builder: (context, state) {
+              return state.when(loaded: (items) {
+                return ListView(
+                  children: [
+                    for (final item in items)
+                      Card(
+                        child: Row(
+                          children: [Text("${item.title}")],
+                        ),
+                      ),
+                  ],
+                );
+              }, loading: () {
+                return Column(
+                  children: const [
+                    SizedBox(
+                      height: 200,
+                    ),
+                    Center(
+                      child: SizedBox(
+                        height: 30,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ],
+                );
+              });
+            },
+          ),
         ),
       ),
     );
