@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woltapp/ui/view/home_page.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
          primarySwatch: Colors.blue,
       ),
-      home: const App(),
+      home: const HomePage(),
     );
   }
 }
