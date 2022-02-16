@@ -335,6 +335,16 @@ class _$VenueEventTearOff {
   VenueEventLoad load() {
     return const VenueEventLoad();
   }
+
+  VenueEventGetFavorites getFavorites() {
+    return const VenueEventGetFavorites();
+  }
+
+  VenueEventFavorite favorite(Item item) {
+    return VenueEventFavorite(
+      item,
+    );
+  }
 }
 
 /// @nodoc
@@ -345,32 +355,44 @@ mixin _$VenueEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() getFavorites,
+    required TResult Function(Item item) favorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(VenueEventLoad value) load,
+    required TResult Function(VenueEventGetFavorites value) getFavorites,
+    required TResult Function(VenueEventFavorite value) favorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -433,6 +455,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() load,
+    required TResult Function() getFavorites,
+    required TResult Function(Item item) favorite,
   }) {
     return load();
   }
@@ -441,6 +465,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
   }) {
     return load?.call();
   }
@@ -449,6 +475,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -461,6 +489,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(VenueEventLoad value) load,
+    required TResult Function(VenueEventGetFavorites value) getFavorites,
+    required TResult Function(VenueEventFavorite value) favorite,
   }) {
     return load(this);
   }
@@ -469,6 +499,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
   }) {
     return load?.call(this);
   }
@@ -477,6 +509,8 @@ class _$VenueEventLoad implements VenueEventLoad {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -488,4 +522,264 @@ class _$VenueEventLoad implements VenueEventLoad {
 
 abstract class VenueEventLoad implements VenueEvent {
   const factory VenueEventLoad() = _$VenueEventLoad;
+}
+
+/// @nodoc
+abstract class $VenueEventGetFavoritesCopyWith<$Res> {
+  factory $VenueEventGetFavoritesCopyWith(VenueEventGetFavorites value,
+          $Res Function(VenueEventGetFavorites) then) =
+      _$VenueEventGetFavoritesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$VenueEventGetFavoritesCopyWithImpl<$Res>
+    extends _$VenueEventCopyWithImpl<$Res>
+    implements $VenueEventGetFavoritesCopyWith<$Res> {
+  _$VenueEventGetFavoritesCopyWithImpl(VenueEventGetFavorites _value,
+      $Res Function(VenueEventGetFavorites) _then)
+      : super(_value, (v) => _then(v as VenueEventGetFavorites));
+
+  @override
+  VenueEventGetFavorites get _value => super._value as VenueEventGetFavorites;
+}
+
+/// @nodoc
+
+class _$VenueEventGetFavorites implements VenueEventGetFavorites {
+  const _$VenueEventGetFavorites();
+
+  @override
+  String toString() {
+    return 'VenueEvent.getFavorites()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is VenueEventGetFavorites);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() getFavorites,
+    required TResult Function(Item item) favorite,
+  }) {
+    return getFavorites();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
+  }) {
+    return getFavorites?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
+    required TResult orElse(),
+  }) {
+    if (getFavorites != null) {
+      return getFavorites();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VenueEventLoad value) load,
+    required TResult Function(VenueEventGetFavorites value) getFavorites,
+    required TResult Function(VenueEventFavorite value) favorite,
+  }) {
+    return getFavorites(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
+  }) {
+    return getFavorites?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
+    required TResult orElse(),
+  }) {
+    if (getFavorites != null) {
+      return getFavorites(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VenueEventGetFavorites implements VenueEvent {
+  const factory VenueEventGetFavorites() = _$VenueEventGetFavorites;
+}
+
+/// @nodoc
+abstract class $VenueEventFavoriteCopyWith<$Res> {
+  factory $VenueEventFavoriteCopyWith(
+          VenueEventFavorite value, $Res Function(VenueEventFavorite) then) =
+      _$VenueEventFavoriteCopyWithImpl<$Res>;
+  $Res call({Item item});
+
+  $ItemCopyWith<$Res> get item;
+}
+
+/// @nodoc
+class _$VenueEventFavoriteCopyWithImpl<$Res>
+    extends _$VenueEventCopyWithImpl<$Res>
+    implements $VenueEventFavoriteCopyWith<$Res> {
+  _$VenueEventFavoriteCopyWithImpl(
+      VenueEventFavorite _value, $Res Function(VenueEventFavorite) _then)
+      : super(_value, (v) => _then(v as VenueEventFavorite));
+
+  @override
+  VenueEventFavorite get _value => super._value as VenueEventFavorite;
+
+  @override
+  $Res call({
+    Object? item = freezed,
+  }) {
+    return _then(VenueEventFavorite(
+      item == freezed
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as Item,
+    ));
+  }
+
+  @override
+  $ItemCopyWith<$Res> get item {
+    return $ItemCopyWith<$Res>(_value.item, (value) {
+      return _then(_value.copyWith(item: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$VenueEventFavorite implements VenueEventFavorite {
+  const _$VenueEventFavorite(this.item);
+
+  @override
+  final Item item;
+
+  @override
+  String toString() {
+    return 'VenueEvent.favorite(item: $item)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is VenueEventFavorite &&
+            const DeepCollectionEquality().equals(other.item, item));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(item));
+
+  @JsonKey(ignore: true)
+  @override
+  $VenueEventFavoriteCopyWith<VenueEventFavorite> get copyWith =>
+      _$VenueEventFavoriteCopyWithImpl<VenueEventFavorite>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function() getFavorites,
+    required TResult Function(Item item) favorite,
+  }) {
+    return favorite(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
+  }) {
+    return favorite?.call(item);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function()? getFavorites,
+    TResult Function(Item item)? favorite,
+    required TResult orElse(),
+  }) {
+    if (favorite != null) {
+      return favorite(item);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(VenueEventLoad value) load,
+    required TResult Function(VenueEventGetFavorites value) getFavorites,
+    required TResult Function(VenueEventFavorite value) favorite,
+  }) {
+    return favorite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
+  }) {
+    return favorite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(VenueEventLoad value)? load,
+    TResult Function(VenueEventGetFavorites value)? getFavorites,
+    TResult Function(VenueEventFavorite value)? favorite,
+    required TResult orElse(),
+  }) {
+    if (favorite != null) {
+      return favorite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VenueEventFavorite implements VenueEvent {
+  const factory VenueEventFavorite(Item item) = _$VenueEventFavorite;
+
+  Item get item;
+  @JsonKey(ignore: true)
+  $VenueEventFavoriteCopyWith<VenueEventFavorite> get copyWith =>
+      throw _privateConstructorUsedError;
 }

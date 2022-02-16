@@ -10,6 +10,7 @@ class Item with _$Item {
   factory Item({
     String? title,
     ItemImage? image,
+    @Default(false) bool isFavorite,
     Venue? venue,
     @JsonKey(name: 'track_id') String? trackId,
   }) = _Item;

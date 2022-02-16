@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:woltapp/bloc/venue_bloc.dart';
 import 'package:woltapp/data/models/ticker.dart';
+import 'package:woltapp/ui/styles/app_style.dart';
+import 'package:woltapp/ui/view/widgets/venue_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,13 +11,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<VenueBloc>(
-      create: (BuildContext context) =>
-          VenueBloc(ticker: const Ticker())..add(const VenueEvent.load()),
+      create: (BuildContext context) => VenueBloc(ticker: const Ticker())
+        ..add(const VenueEvent.load())
+        ..add(const VenueEvent.getFavorites()),
       child: Scaffold(
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              const SliverAppBar(
+              SliverAppBar(
                 backgroundColor: Colors.white,
                 pinned: true,
                 elevation: 2,
@@ -23,9 +26,8 @@ class HomePage extends StatelessWidget {
                   centerTitle: true,
                   title: Text(
                     "Meal Venues",
-                    style: TextStyle(
-                      color: Colors.teal,
-                    ),
+                    style: AppTextStyle.headline1
+                        .copyWith(color: AppColor.darkBlue),
                   ),
                 ),
               ),
@@ -37,15 +39,11 @@ class HomePage extends StatelessWidget {
             },
             builder: (context, state) {
               return state.when(loaded: (items) {
-                return ListView(
-                  children: [
-                    for (final item in items)
-                      Card(
-                        child: Row(
-                          children: [Text("${item.title}")],
-                        ),
-                      ),
-                  ],
+                return ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (_, index) => VenueCard(
+                    item: items[index],
+                  ),
                 );
               }, loading: () {
                 return Column(
@@ -55,8 +53,12 @@ class HomePage extends StatelessWidget {
                     ),
                     Center(
                       child: SizedBox(
-                        height: 30,
-                        child: CircularProgressIndicator(),
+                        height: 40,
+                        width: 40,
+                        child: CircularProgressIndicator(
+                          color: AppColor.darkBlue,
+                          backgroundColor: AppColor.red,
+                        ),
                       ),
                     ),
                   ],

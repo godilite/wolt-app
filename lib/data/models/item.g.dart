@@ -11,6 +11,7 @@ _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
       image: json['image'] == null
           ? null
           : ItemImage.fromJson(json['image'] as Map<String, dynamic>),
+      isFavorite: json['isFavorite'] as bool? ?? false,
       venue: json['venue'] == null
           ? null
           : Venue.fromJson(json['venue'] as Map<String, dynamic>),
@@ -20,6 +21,7 @@ _$_Item _$$_ItemFromJson(Map<String, dynamic> json) => _$_Item(
 Map<String, dynamic> _$$_ItemToJson(_$_Item instance) => <String, dynamic>{
       'title': instance.title,
       'image': instance.image,
+      'isFavorite': instance.isFavorite,
       'venue': instance.venue,
       'track_id': instance.trackId,
     };

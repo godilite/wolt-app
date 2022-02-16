@@ -24,11 +24,13 @@ class _$ItemTearOff {
   _Item call(
       {String? title,
       ItemImage? image,
+      bool isFavorite = false,
       Venue? venue,
       @JsonKey(name: 'track_id') String? trackId}) {
     return _Item(
       title: title,
       image: image,
+      isFavorite: isFavorite,
       venue: venue,
       trackId: trackId,
     );
@@ -46,6 +48,7 @@ const $Item = _$ItemTearOff();
 mixin _$Item {
   String? get title => throw _privateConstructorUsedError;
   ItemImage? get image => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
   Venue? get venue => throw _privateConstructorUsedError;
   @JsonKey(name: 'track_id')
   String? get trackId => throw _privateConstructorUsedError;
@@ -62,6 +65,7 @@ abstract class $ItemCopyWith<$Res> {
   $Res call(
       {String? title,
       ItemImage? image,
+      bool isFavorite,
       Venue? venue,
       @JsonKey(name: 'track_id') String? trackId});
 
@@ -81,6 +85,7 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
   $Res call({
     Object? title = freezed,
     Object? image = freezed,
+    Object? isFavorite = freezed,
     Object? venue = freezed,
     Object? trackId = freezed,
   }) {
@@ -93,6 +98,10 @@ class _$ItemCopyWithImpl<$Res> implements $ItemCopyWith<$Res> {
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as ItemImage?,
+      isFavorite: isFavorite == freezed
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       venue: venue == freezed
           ? _value.venue
           : venue // ignore: cast_nullable_to_non_nullable
@@ -135,6 +144,7 @@ abstract class _$ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
   $Res call(
       {String? title,
       ItemImage? image,
+      bool isFavorite,
       Venue? venue,
       @JsonKey(name: 'track_id') String? trackId});
 
@@ -157,6 +167,7 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
   $Res call({
     Object? title = freezed,
     Object? image = freezed,
+    Object? isFavorite = freezed,
     Object? venue = freezed,
     Object? trackId = freezed,
   }) {
@@ -169,6 +180,10 @@ class __$ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as ItemImage?,
+      isFavorite: isFavorite == freezed
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       venue: venue == freezed
           ? _value.venue
           : venue // ignore: cast_nullable_to_non_nullable
@@ -187,6 +202,7 @@ class _$_Item implements _Item {
   _$_Item(
       {this.title,
       this.image,
+      this.isFavorite = false,
       this.venue,
       @JsonKey(name: 'track_id') this.trackId});
 
@@ -196,6 +212,9 @@ class _$_Item implements _Item {
   final String? title;
   @override
   final ItemImage? image;
+  @JsonKey()
+  @override
+  final bool isFavorite;
   @override
   final Venue? venue;
   @override
@@ -204,7 +223,7 @@ class _$_Item implements _Item {
 
   @override
   String toString() {
-    return 'Item(title: $title, image: $image, venue: $venue, trackId: $trackId)';
+    return 'Item(title: $title, image: $image, isFavorite: $isFavorite, venue: $venue, trackId: $trackId)';
   }
 
   @override
@@ -214,6 +233,8 @@ class _$_Item implements _Item {
             other is _Item &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.image, image) &&
+            const DeepCollectionEquality()
+                .equals(other.isFavorite, isFavorite) &&
             const DeepCollectionEquality().equals(other.venue, venue) &&
             const DeepCollectionEquality().equals(other.trackId, trackId));
   }
@@ -223,6 +244,7 @@ class _$_Item implements _Item {
       runtimeType,
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(image),
+      const DeepCollectionEquality().hash(isFavorite),
       const DeepCollectionEquality().hash(venue),
       const DeepCollectionEquality().hash(trackId));
 
@@ -241,6 +263,7 @@ abstract class _Item implements Item {
   factory _Item(
       {String? title,
       ItemImage? image,
+      bool isFavorite,
       Venue? venue,
       @JsonKey(name: 'track_id') String? trackId}) = _$_Item;
 
@@ -250,6 +273,8 @@ abstract class _Item implements Item {
   String? get title;
   @override
   ItemImage? get image;
+  @override
+  bool get isFavorite;
   @override
   Venue? get venue;
   @override
