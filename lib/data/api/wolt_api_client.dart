@@ -47,9 +47,8 @@ class WoltApiClient {
     final responseBody = await _get(uri);
 
     try {
-      final items = responseBody
-          .map((dynamic item) => Item.fromJson(item).copyWith())
-          .toList();
+      final items =
+          responseBody.map((dynamic item) => Item.fromJson(item)).toList();
       return items.take(15).toList();
     } catch (_) {
       throw JsonDeserializationException();
