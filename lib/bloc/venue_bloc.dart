@@ -25,16 +25,21 @@ class VenueEvent with _$VenueEvent {
 }
 
 class VenueBloc extends Bloc<VenueEvent, VenueState> {
-  VenueBloc({required Ticker ticker})
-      : _ticker = ticker,
+  VenueBloc({
+    required Ticker ticker,
+    required VenueRepositoryImpl repository,
+    required LocalRepository localRepo,
+  })  : _ticker = ticker,
+        _repository = repository,
+        _localRepo = localRepo,
         super(const VenueState.loading()) {
     on<VenueEventGetFavorites>(_onGetFavorites);
     on<VenueEventLoad>(_onVenueLoaded);
     on<VenueEventFavorite>(_onFavorite);
   }
   final Ticker _ticker;
-  final _repository = VenueRepositoryImpl();
-  final _localRepo = LocalRepository();
+  final VenueRepositoryImpl _repository;
+  final LocalRepository _localRepo;
   static const int _seconds = 10;
   final locations = LocationRepository.locations;
 

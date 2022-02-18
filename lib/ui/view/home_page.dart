@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:woltapp/bloc/venue_bloc.dart';
 import 'package:woltapp/data/models/ticker.dart';
+import 'package:woltapp/data/repository/local_repository.dart';
+import 'package:woltapp/data/repository/venue_repository_impl.dart';
 import 'package:woltapp/ui/styles/app_style.dart';
 import 'package:woltapp/ui/view/widgets/venue_card.dart';
 
@@ -11,7 +13,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<VenueBloc>(
-      create: (BuildContext context) => VenueBloc(ticker: const Ticker())
+      create: (BuildContext context) => VenueBloc(
+          ticker: const Ticker(),
+          repository: context.read<VenueRepositoryImpl>(),
+          localRepo: LocalRepository())
         ..add(const VenueEvent.load())
         ..add(const VenueEvent.getFavorites()),
       child: Scaffold(
@@ -33,37 +38,37 @@ class HomePage extends StatelessWidget {
               ),
             ];
           },
-          body: BlocConsumer<VenueBloc, VenueState>(
-            listener: (context, state) {
-              if (state is VenueStateLoaded) {}
-            },
+          body: BlocBuilder<VenueBloc, VenueState>(
             builder: (context, state) {
-              return state.when(loaded: (items) {
-                return ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (_, index) => VenueCard(
-                    item: items[index],
-                  ),
-                );
-              }, loading: () {
-                return Column(
-                  children: const [
-                    SizedBox(
-                      height: 200,
+              return state.when(
+                loaded: (items) {
+                  return ListView.builder(
+                    itemCount: items.length,
+                    itemBuilder: (_, index) => VenueCard(
+                      item: items[index],
                     ),
-                    Center(
-                      child: SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: CircularProgressIndicator(
-                          color: AppColor.darkBlue,
-                          backgroundColor: AppColor.red,
+                  );
+                },
+                loading: () {
+                  return Column(
+                    children: const [
+                      SizedBox(
+                        height: 200,
+                      ),
+                      Center(
+                        child: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: CircularProgressIndicator(
+                            color: AppColor.darkBlue,
+                            backgroundColor: AppColor.red,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              });
+                    ],
+                  );
+                },
+              );
             },
           ),
         ),
