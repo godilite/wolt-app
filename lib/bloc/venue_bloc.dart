@@ -43,7 +43,7 @@ class VenueBloc extends Bloc<VenueEvent, VenueState> {
   static const int _seconds = 10;
   final locations = LocationRepository.locations;
 
-  StreamSubscription<int>? _tickerSubscription;
+  StreamSubscription<bool>? _tickerSubscription;
   late List<Item> items;
   int _currentLocation = 0;
   List<Item> _favorites = [];
@@ -71,15 +71,13 @@ class VenueBloc extends Bloc<VenueEvent, VenueState> {
   //Polling Handler to refresh data every 10 seconds
   void _onRefreshData() {
     _tickerSubscription =
-        _ticker.tick(ticks: _seconds).listen((duration) async {
-      if (duration == 0) {
+        _ticker.tick(ticks: _seconds).listen((_) async {
         if (_currentLocation < locations.length - 1) {
           _currentLocation++;
         } else if (_currentLocation == locations.length - 1) {
           _currentLocation = 0;
         }
         add(const VenueEventLoad());
-      }
     });
   }
 
